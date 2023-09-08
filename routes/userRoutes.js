@@ -10,6 +10,12 @@ const { authenticateAdmin } = require("../middleware/authentication");
 const router = express.Router();
 
 router.get("/", authorizeUser(), authenticateAdmin(), getUsers);
-router.post("/", validateBody(createUserSchema), createUser);
+router.post(
+  "/",
+  validateBody(createUserSchema),
+  authorizeUser(),
+  authenticateAdmin(),
+  createUser
+);
 router.post("/login", validateBody(loginUserSchema), login);
 module.exports = router;

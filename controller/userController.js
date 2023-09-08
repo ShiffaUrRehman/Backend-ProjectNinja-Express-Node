@@ -1,5 +1,6 @@
 const { User } = require("../model/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // @desc    Get all Users
 // @route   GET /api/user
@@ -17,9 +18,6 @@ const getUsers = async (req, res) => {
 // @route   POST /api/user/login
 // Public
 const login = async (req, res) => {
-  // !!!
-  // Check validation for this body
-  // !!!
   try {
     const user = await User.findOne({ username: req.body.username });
     if (!user) res.status(404).send({ message: "User not found" });
@@ -28,7 +26,11 @@ const login = async (req, res) => {
       if (!isValid) {
         res.status(404).send("Wrong Password");
       } else {
-        res.status(200).send({ user: user });
+        const obj = { id: user._id, role: user.role };
+        const token = jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET, {
+          expiresIn: 60,
+        });
+        res.status(200).send({ user: obj, token: token });
       }
     }
   } catch (err) {

@@ -26,11 +26,11 @@ const login = async (req, res) => {
       if (!isValid) {
         res.status(404).send("Wrong Password");
       } else {
-        const obj = { id: user._id, role: user.role };
+        const obj = { id: user._id };
         const token = jwt.sign(obj, process.env.ACCESS_TOKEN_SECRET, {
-          expiresIn: 60,
+          expiresIn: "1d",
         });
-        res.status(200).send({ user: obj, token: token });
+        res.status(200).send({ user, token: token });
       }
     }
   } catch (err) {

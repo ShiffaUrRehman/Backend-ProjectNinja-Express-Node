@@ -1,9 +1,9 @@
 const { User } = require("../model/userModel");
 const bcrypt = require("bcrypt");
-const SALT_WORK_FACTOR = 10;
 
 // @desc    Get all Users
 // @route   GET /api/user
+// Private
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -15,7 +15,7 @@ const getUsers = async (req, res) => {
 
 // @desc    Login a User
 // @route   POST /api/user/login
-
+// Public
 const login = async (req, res) => {
   // !!!
   // Check validation for this body
@@ -28,7 +28,7 @@ const login = async (req, res) => {
       if (!isValid) {
         res.status(404).send("Wrong Password");
       } else {
-        res.status(200).send(user);
+        res.status(200).send({ user: user });
       }
     }
   } catch (err) {
@@ -38,6 +38,7 @@ const login = async (req, res) => {
 
 // @desc    Create a user
 // @route   POST /api/user
+// Private
 const createUser = async (req, res) => {
   try {
     const user = new User({

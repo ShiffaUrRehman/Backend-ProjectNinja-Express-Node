@@ -1,12 +1,17 @@
 const yup = require("yup");
 
-const userSchema = yup.object({
+const createUserSchema = yup.object({
   username: yup.string().required().max(1024),
   password: yup.string().required().min(8),
   role: yup
     .string()
     .required()
     .oneOf(["Admin", "Project Manager", "Team Lead", "Team Member"]),
+});
+
+const loginUserSchema = yup.object({
+  username: yup.string().required().max(1024),
+  password: yup.string().required().min(8),
 });
 
 const validateBody = (schema) => async (req, res, next) => {
@@ -19,4 +24,5 @@ const validateBody = (schema) => async (req, res, next) => {
 };
 
 module.exports.validateBody = validateBody;
-module.exports.userSchema = userSchema;
+module.exports.createUserSchema = createUserSchema;
+module.exports.loginUserSchema = loginUserSchema;

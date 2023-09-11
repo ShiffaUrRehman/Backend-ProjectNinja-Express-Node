@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["Admin", "Project Manager", "Team Lead", "Team Member"],
+      enum: ["Project Manager", "Team Lead", "Team Member"],
       maxlength: 1024,
       required: true,
     },

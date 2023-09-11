@@ -9,6 +9,8 @@ const { authorizeUser } = require("../middleware/authorization");
 const { authenticateAdmin } = require("../middleware/authentication");
 const router = express.Router();
 
+// Routes
+
 router.get("/", authorizeUser(), authenticateAdmin(), getUsers);
 router.post(
   "/",

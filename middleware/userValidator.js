@@ -6,7 +6,7 @@ const createUserSchema = yup.object({
   role: yup
     .string()
     .required()
-    .oneOf(["Admin", "Project Manager", "Team Lead", "Team Member"]),
+    .oneOf(["Project Manager", "Team Lead", "Team Member"]),
 });
 
 const loginUserSchema = yup.object({

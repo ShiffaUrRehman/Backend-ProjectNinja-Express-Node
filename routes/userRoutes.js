@@ -12,7 +12,10 @@ const router = express.Router();
 
 // Routes
 
+// Admin can get all users
 router.get("/", authorizeUser(), authenticateAdmin(), getUsers);
+
+// Admin can create users
 router.post(
   "/",
   validateBody(createUserSchema),
@@ -20,5 +23,6 @@ router.post(
   authenticateAdmin(),
   createUser
 );
+
 router.post("/login", validateBody(loginUserSchema), login);
 module.exports = router;

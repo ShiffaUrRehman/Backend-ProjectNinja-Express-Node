@@ -1,4 +1,6 @@
 const authenticateAdmin = () => async (req, res, next) => {
+  // Check if the role is Admin or Not
+  // To authenticate Admin access only
   if (req.user.role === "Admin") {
     next();
   } else {

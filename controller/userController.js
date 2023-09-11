@@ -2,6 +2,7 @@ const { User } = require("../model/userModel");
 
 // @desc    Get all Users
 // @route   GET /api/user
+// Private
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -13,6 +14,7 @@ const getUsers = async (req, res) => {
 
 // @desc    Create a user
 // @route   POST /api/user
+// Private
 const createUser = async (req, res) => {
   try {
     const user = new User({

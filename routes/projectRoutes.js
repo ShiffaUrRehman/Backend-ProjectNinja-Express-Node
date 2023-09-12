@@ -9,6 +9,7 @@ const {
   getAllProjects,
   createProject,
 } = require("../controller/projectController");
+const { checkProjectManager } = require("../middleware/checkUser");
 const router = express.Router();
 
 // Routes
@@ -22,6 +23,7 @@ router.post(
   validateBody(createProjectSchema),
   authorizeUser,
   authenticateAdmin,
+  checkProjectManager,
   createProject
 );
 

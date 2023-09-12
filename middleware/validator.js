@@ -16,6 +16,7 @@ const loginUserSchema = yup.object({
 
 const createProjectSchema = yup.object({
   name: yup.string().required().max(1024),
+  projectManager: yup.string().required().max(1024),
 });
 
 const validateBody = (schema) => async (req, res, next) => {

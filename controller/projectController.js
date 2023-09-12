@@ -19,6 +19,7 @@ const createProject = async (req, res) => {
   try {
     const project = new Project({
       name: req.body.name,
+      projectManager: req.body.projectManager,
       status: "Onboarding",
     });
     const result = await project.save();

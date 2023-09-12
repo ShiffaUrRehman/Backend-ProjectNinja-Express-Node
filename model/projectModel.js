@@ -14,11 +14,10 @@ const ProjectSchema = new mongoose.Schema(
       enum: ["Onboarding", "In Progress", "Complete"],
       required: true,
     },
-    projectManager: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-      },
-    ],
+    projectManager: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
     teamLead: [
       {
         type: mongoose.Schema.Types.ObjectId,

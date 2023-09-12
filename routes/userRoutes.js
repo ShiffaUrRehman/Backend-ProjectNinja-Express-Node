@@ -4,7 +4,7 @@ const {
   createUserSchema,
   validateBody,
   loginUserSchema,
-} = require("../middleware/userValidator");
+} = require("../middleware/validator");
 const { authorizeUser } = require("../middleware/authorization");
 const { authenticateAdmin } = require("../middleware/authentication");
 const { login } = require("../controller/authController");

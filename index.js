@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes navigator
 app.use("/api/user", require("./routes/userRoutes"));
+app.use("/api/project", require("./routes/projectRoutes"));
 
 // Function for starting our server
 const start = (port) => {

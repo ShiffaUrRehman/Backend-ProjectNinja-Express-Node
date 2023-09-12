@@ -14,6 +14,10 @@ const loginUserSchema = yup.object({
   password: yup.string().required().min(8),
 });
 
+const createProjectSchema = yup.object({
+  name: yup.string().required().max(1024),
+});
+
 const validateBody = (schema) => async (req, res, next) => {
   try {
     await schema.validate(req.body, { strict: true });
@@ -25,4 +29,5 @@ const validateBody = (schema) => async (req, res, next) => {
 
 module.exports.validateBody = validateBody;
 module.exports.createUserSchema = createUserSchema;
+module.exports.createProjectSchema = createProjectSchema;
 module.exports.loginUserSchema = loginUserSchema;

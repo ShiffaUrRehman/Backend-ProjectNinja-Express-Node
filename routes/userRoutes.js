@@ -13,14 +13,14 @@ const router = express.Router();
 // Routes
 
 // Admin can get all users
-router.get("/", authorizeUser(), authenticateAdmin(), getUsers);
+router.get("/", authorizeUser, authenticateAdmin, getUsers);
 
 // Admin can create users
 router.post(
   "/",
   validateBody(createUserSchema),
-  authorizeUser(),
-  authenticateAdmin(),
+  authorizeUser,
+  authenticateAdmin,
   createUser
 );
 

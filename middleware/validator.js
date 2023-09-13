@@ -16,7 +16,7 @@ const loginUserSchema = yup.object({
 
 const createProjectSchema = yup.object({
   name: yup.string().required().max(1024),
-  description: yup.string().required().max(1024),
+  description: yup.string().notRequired().min(255),
   projectManager: yup.string().required().max(1024),
 });
 

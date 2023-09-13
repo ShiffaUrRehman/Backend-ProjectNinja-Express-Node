@@ -5,7 +5,10 @@ const { Project } = require("../model/projectModel");
 // Private
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find()
+      .populate("projectManager", "username")
+      .populate("teamLead", "username")
+      .populate("teamMember", "username");
     res.status(200).send(projects);
   } catch (err) {
     res.status(500).send({ message: err.message });
@@ -19,6 +22,7 @@ const createProject = async (req, res) => {
   try {
     const project = new Project({
       name: req.body.name,
+      description: req.body.description,
       projectManager: req.body.projectManager,
       status: "Onboarding",
     });

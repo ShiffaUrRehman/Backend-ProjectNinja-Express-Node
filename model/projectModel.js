@@ -14,18 +14,26 @@ const ProjectSchema = new mongoose.Schema(
       enum: ["Onboarding", "In Progress", "Complete"],
       required: true,
     },
+    description: {
+      type: String,
+      maxlength: 1024,
+      required: true,
+    },
     projectManager: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
       required: true,
     },
     teamLead: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
       },
     ],
     teamMember: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
       },
     ],
   },

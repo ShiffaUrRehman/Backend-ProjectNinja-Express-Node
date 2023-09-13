@@ -12,13 +12,12 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       enum: ["Onboarding", "In Progress", "Complete"],
       required: true,
-      defaultValue:"Onboarding",
+      default: "Onboarding",
     },
     description: {
       type: String,
       minlength: 255,
-      required:false,
-      required: true,
+      required: false,
     },
     projectManager: {
       type: mongoose.Schema.Types.ObjectId,

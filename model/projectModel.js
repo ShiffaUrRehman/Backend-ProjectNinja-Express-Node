@@ -12,6 +12,7 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       enum: ["Onboarding", "In Progress", "Complete"],
       required: true,
+      defaultValue:"Onboarding",
     },
     description: {
       type: String,

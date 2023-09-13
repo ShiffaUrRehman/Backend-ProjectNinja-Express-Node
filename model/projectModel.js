@@ -10,7 +10,6 @@ const ProjectSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      maxlength: 1024,
       enum: ["Onboarding", "In Progress", "Complete"],
       required: true,
     },

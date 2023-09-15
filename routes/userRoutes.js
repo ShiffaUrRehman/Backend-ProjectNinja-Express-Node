@@ -4,23 +4,25 @@ const {
   createUserSchema,
   validateBody,
   loginUserSchema,
-} = require("../middleware/userValidator");
-const { authorizeUser } = require("../middleware/authorization");
-const { authenticateAdmin } = require("../middleware/authentication");
+} = require("../middleware/validator");
+const {
+  authorizeUser,
+  authorizeAdmin,
+} = require("../middleware/authorization");
 const { login } = require("../controller/authController");
 const router = express.Router();
 
 // Routes
 
 // Admin can get all users
-router.get("/", authorizeUser(), authenticateAdmin(), getUsers);
+router.get("/", authorizeUser, authorizeAdmin, getUsers);
 
 // Admin can create users
 router.post(
   "/",
   validateBody(createUserSchema),
-  authorizeUser(),
-  authenticateAdmin(),
+  authorizeUser,
+  authorizeAdmin,
   createUser
 );
 

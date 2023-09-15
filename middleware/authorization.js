@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../model/userModel");
 
-const authorizeUser = () => async (req, res, next) => {
+const authorizeUser = async (req, res, next) => {
   try {
     // We get token from header
     const authHeader = req.headers["authorization"];
@@ -25,4 +25,17 @@ const authorizeUser = () => async (req, res, next) => {
   }
 };
 
+const authorizeAdmin = async (req, res, next) => {
+  // Check if the role is Admin or Not
+  // To authenticate Admin access only
+  if (req.user.role === "Admin") {
+    next();
+  } else {
+    return res.status(403).send({
+      message: "Not Authorized, Only Admin can access this route",
+    });
+  }
+};
+
+module.exports.authorizeAdmin = authorizeAdmin;
 module.exports.authorizeUser = authorizeUser;

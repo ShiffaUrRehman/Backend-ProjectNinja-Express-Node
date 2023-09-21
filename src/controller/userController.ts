@@ -1,13 +1,14 @@
-const { User } = require("../model/userModel");
+import User from "../model/userModel";
+import { Response, Request } from "express";
 
 // @desc    Get all Users
 // @route   GET /api/user
 // Private
-const getUsers = async (req, res) => {
+export const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.find();
     res.status(200).send(users);
-  } catch (err) {
+  } catch (err:any) {
     res.status(500).send({ message: err.message });
   }
 };
@@ -15,7 +16,7 @@ const getUsers = async (req, res) => {
 // @desc    Create a user
 // @route   POST /api/user
 // Private
-const createUser = async (req, res) => {
+export const createUser = async (req:Request, res:Response) => {
   try {
     const user = new User({
       username: req.body.username,
@@ -24,10 +25,8 @@ const createUser = async (req, res) => {
     });
     const result = await user.save();
     res.status(201).send(result);
-  } catch (err) {
+  } catch (err:any) {
     res.status(500).send({ message: err.message });
   }
 };
 
-module.exports.getUsers = getUsers;
-module.exports.createUser = createUser;

@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 const SALT_WORK_FACTOR = 10;
 
 // Schema and Model for Users
@@ -28,13 +28,6 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-// UserSchema.methods.comparePassword = function (candidatePassword, next) {
-//   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-//     if (err) return next(err);
-//     next(null, isMatch);
-//   });
-// };
-
 UserSchema.pre("save", function (next) {
   let user = this;
 
@@ -58,4 +51,4 @@ UserSchema.pre("save", function (next) {
 
 const User = mongoose.model("user", UserSchema);
 
-module.exports.User = User;
+export default User;

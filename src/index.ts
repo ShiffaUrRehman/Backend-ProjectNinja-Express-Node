@@ -1,11 +1,22 @@
-const express = require("express");
-require("dotenv").config();
-var bodyParser = require("body-parser");
-const { connectDB } = require("./config/db");
+import express from "express"
+import dotenv from "dotenv";
+// require("dotenv").config();  // Am I replacing it correctly?
+import bodyParser  from "body-parser";
+import {test} from './test/test'
+import connectDB from "./config/db";
+
+// importing routers
+import userRouter from "routes/userRoutes";
+import projectRouter from "routes/projectRoutes";
+
 
 // Function for DB connection
+test()
 connectDB();
 
+dotenv.config()
+
+// Old app below
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -15,11 +26,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes navigator
-app.use("/api/user", require("./routes/userRoutes"));
-app.use("/api/project", require("./routes/projectRoutes"));
+// app.use("/api/user", userRouter);
+// app.use("/api/project", projectRouter);
 
 // Function for starting our server
-const start = (port) => {
+const start = (port: string | number) => {
   try {
     app.listen(port, () => {
       console.log(`App running/listening at: http://localhost:${port}`);

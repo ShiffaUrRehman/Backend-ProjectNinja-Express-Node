@@ -1,16 +1,17 @@
-const { Project } = require("../model/projectModel");
+import  Project  from "../model/projectModel"
+import { Response, Request } from "express";
 
 // @desc    Get all Projects
 // @route   GET /api/projects
 // Private
-const getAllProjects = async (req, res) => {
+export const getAllProjects = async (req: Request, res: Response) => {
   try {
     const projects = await Project.find()
       .populate("projectManager", "username")
       .populate("teamLead", "username")
       .populate("teamMember", "username");
     res.status(200).send(projects);
-  } catch (err) {
+  } catch (err:any) {
     res.status(500).send({ message: err.message });
   }
 };
@@ -18,7 +19,7 @@ const getAllProjects = async (req, res) => {
 // @desc    Create a project
 // @route   POST /api/project
 // Private
-const createProject = async (req, res) => {
+export const createProject = async (req: Request, res: Response) => {
   try {
     const project = new Project({
       name: req.body.name,
@@ -27,10 +28,8 @@ const createProject = async (req, res) => {
     });
     const result = await project.save();
     res.status(201).send(result);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send({ message: err.message });
   }
 };
 
-module.exports.getAllProjects = getAllProjects;
-module.exports.createProject = createProject;

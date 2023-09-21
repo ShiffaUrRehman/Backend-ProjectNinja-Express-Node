@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-
-const DB_URL_LOCAL = "mongodb://127.0.0.1:27017/projectNinja";
+import mongoose from "mongoose";
+const DB_URL_LOCAL: string = "mongodb://127.0.0.1:27017/projectNinja";
 // DB connection function separated in a module
 const connectDB = () => {
   mongoose
@@ -9,4 +8,4 @@ const connectDB = () => {
     .catch((err) => console.log("Error while connecting to DB", err.message));
 };
 
-module.exports.connectDB = connectDB;
+export default connectDB;
